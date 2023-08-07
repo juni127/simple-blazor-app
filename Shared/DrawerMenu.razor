@@ -1,0 +1,18 @@
+﻿<MatDrawerContainer Style="width: 100vw; height: 100vh;">
+    <MatDrawer @bind-Opened="@Opened">
+        Drawer Content
+    </MatDrawer>
+    <MatDrawerContent>
+        @ChildContent
+    </MatDrawerContent>
+</MatDrawerContainer>
+
+
+@code
+{
+    [Parameter]
+    public bool Opened { get; set; } = true;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

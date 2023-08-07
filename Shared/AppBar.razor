@@ -1,0 +1,20 @@
+﻿<MatAppBar Fixed="true">
+    <MatAppBarRow>
+        <MatAppBarSection>
+            <MatIconButton Icon="menu" @onclick="SwitchDrawerState" />
+            <MatAppBarTitle>SimpleBlazorApp</MatAppBarTitle>
+        </MatAppBarSection>
+        <MatAppBarSection Align="@MatAppBarSectionAlign.End">
+            <MatIconButton Icon="favorite"></MatIconButton>
+        </MatAppBarSection>
+    </MatAppBarRow>
+</MatAppBar>
+
+@code {
+    [Parameter]
+    public EventCallback SwitchDrawerState { get; set; }
+
+    void ToggleDrawer()
+    {
+    }
+}
