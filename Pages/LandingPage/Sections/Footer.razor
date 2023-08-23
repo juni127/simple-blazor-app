@@ -1,0 +1,39 @@
+@namespace LPSections
+@using Components
+
+<Section>
+    <div class="footer-container">
+        <div class="info-section col-12 col-sm-6 col-md-4" style="display: flex; flex-direction: column">
+            <h2>SimpleBlazorApp</h2>
+            <p style="margin-bottom: 16px;">Making the world a better place through constructing elegant hierarchies.
+            </p>
+            <p>Developed by <span>Reinaldo</span>.</p>
+            <p>Inspired by <span>Ayro UI</span>.</p>
+        </div>
+        <div class="solutions-section col-12 col-sm-6 col-md-2" style="display: flex; flex-direction: column">
+            <h4>Solutions</h4>
+            <p>Marketing</p>
+            <p>Analytics</p>
+            <p>Commerce</p>
+            <p>Insights</p>
+        </div>
+        <div class="support-section col-12 col-sm-6 col-md-2" style="display: flex; flex-direction: column">
+            <h4>Support</h4>
+            <p>Pricing</p>
+            <p>Documentation</p>
+            <p>Guides</p>
+            <p>API Status</p>
+        </div>
+        <div class="newsletter-section col-12 col-sm-6 col-md-4" style="display: flex; flex-direction: column">
+            <h4>Subscribe</h4>
+            <p>Subscribe to our newsletter for the latest updates.</p>
+            <MatTextField @bind-value="NewsLetterMail" TValue="string" Icon="send" IconTrailing="true" Outlined="true">
+            </MatTextField>
+        </div>
+    </div>
+</Section>
+
+@code
+{
+    private string NewsLetterMail = "";
+}

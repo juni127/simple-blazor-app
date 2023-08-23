@@ -1,0 +1,87 @@
+.pricing-container {
+    max-width: 1000px;
+}
+
+::deep .pricing-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 32px;
+}
+
+::deep .pricing-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+::deep .pricing-card {
+    border-radius: 8px;
+    box-shadow: none;
+    background: none;
+}
+
+::deep .pricing-card .pricing-card-content {
+    padding: 16px;
+    border: 1px solid #0001;
+    text-align: center;
+    transition: all .5s;
+}
+
+::deep .pricing-card:hover .pricing-card-content {
+    box-shadow: 0px 2px 4px rgba(40, 41, 61, 0.04), 0px 8px 16px rgba(96, 97, 112, 0.16);
+}
+
+::deep .pricing-card-content h4 {
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    color: var(--mdc-theme-secondary);
+}
+
+::deep .pricing-card-content p {
+    opacity: .5;
+    margin-bottom: 32px;
+}
+
+::deep .pricing-card-content div {
+    color: #0008;
+    display: flex;
+    justify-content: center;
+}
+
+::deep .pricing-card-content div h2 {
+    color: black;
+    font-size: 48px;
+}
+
+::deep .pricing-card-content div p {
+    align-self: flex-end;
+    margin-bottom: 8px;
+}
+
+::deep .pricing-card-content button {
+    margin: 32px;
+}
+
+::deep .pricing-card-content ul {
+    margin-bottom: 0;
+    text-align: start;
+    opacity: .5;
+    list-style-type: none;
+    padding: 0;
+}
+
+::deep .pricing-card-content ul li {
+    margin-top: 4px;
+    display: flex;
+}
+
+::deep .pricing-card-content ul li i {
+    padding-right: 4px;
+    color: black;
+}
+
+::deep .pricing-card-content ul li.checked i {
+    color: var(--mdc-theme-secondary);
+}

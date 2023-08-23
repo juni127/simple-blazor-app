@@ -1,0 +1,62 @@
+@namespace RegisterSteps
+
+@using Microsoft.AspNetCore.Components.Forms
+
+<EditForm id="ActualForm" Model="@StateModels" OnValidSubmit="OnValidSubmit">
+    <div class="review-order-container">
+        <div class="col-12 col-md-6 review-order-details">
+            <h4>Account details:</h4>
+            <div>
+                <div>Name</div>
+                <div>@StateModels.UserInfo.LastName.ToUpper(), @StateModels.UserInfo.Name</div>
+            </div>
+            <div>
+                <div>Email</div>
+                <div>@StateModels.UserInfo.Email</div>
+            </div>
+            <div>
+                <div>Plan</div>
+                <div>@StateModels.Plan.Name</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 review-order-details">
+            <h4>Payment details:</h4>
+            <div>
+                <div>Card holder</div>
+                <div>@StateModels.PaymentInfo.NameOnCard</div>
+            </div>
+            <div>
+                <div>Card number</div>
+                <div>
+                    XXXX-XXXX-XXXX-
+                    @StateModels.PaymentInfo.CardNumber.Substring(StateModels.PaymentInfo.CardNumber.Length - 4)
+                </div>
+            </div>
+            <div>
+                <div>Expiry date</div>
+                <div>@StateModels.PaymentInfo.ExpiryDate</div>
+            </div>
+            <div>
+                <div>Price</div>
+                <div>$ <b>@StateModels.Plan.Value</b>/mo</div>
+            </div>
+        </div>
+        <div class="col-12 review-order-disclaimer">
+            By clicking finish I afirm that I have read, understood and agreed <br>
+            to the <b>Terms and Conditions</b>.
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public Action NextStep { get; set; }
+
+    [Parameter]
+    public Models StateModels { get; set; }
+
+    private void OnValidSubmit()
+    {
+        NextStep();
+    }
+}

@@ -1,0 +1,75 @@
+@namespace RegisterSteps
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Forms
+
+<EditForm id="ActualForm" Model="@StateModels.Plan" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <h4>Plan selection:</h4>
+    <div>
+        <InputRadioGroup @bind-Value="StateModels.Plan.Name">
+            <div class="pricing-content">
+                @foreach (var individualPlan in PlanModel.Plans)
+                {
+                    <div
+                        class="col-11 col-xs-8 col-sm-5 col-md-4 pricing-card @(individualPlan.Name == StateModels.Plan.Name ? "selected" : "")">
+                        <div class="pricing-card-content" style="display: flex; flex-direction: column;"
+                            @onclick="@(() => SelectPlan(individualPlan.Name))">
+                            <div>
+                                <InputRadio Value="@individualPlan.Name" />
+                                <h6>@individualPlan.Name</h6>
+                            </div>
+                            <p>@individualPlan.Description</p>
+                            <div>
+                                $
+                                <h2>@individualPlan.Value</h2>
+                                <p>/mo</p>
+                            </div>
+                            <ul>
+                                <li class="@GetClassName(individualPlan.Perks, 1)">
+                                    <MatIcon Icon="check_circle_outline" />
+                                    Cras justo odio.
+                                </li>
+                                <li class="@GetClassName(individualPlan.Perks, 2)">
+                                    <MatIcon Icon="check_circle_outline" />
+                                    Dapibus ac facilisis in.
+                                </li>
+                                <li class="@GetClassName(individualPlan.Perks, 4)">
+                                    <MatIcon Icon="check_circle_outline" />
+                                    Morbi leo risus.
+                                </li>
+                                <li class="@GetClassName(individualPlan.Perks, 8)">
+                                    <MatIcon Icon="check_circle_outline" />
+                                    Excepteur sint occaecat velit.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+        </InputRadioGroup>
+    </div>
+    <ValidationSummary />
+</EditForm>
+
+@code {
+    [Parameter]
+    public Action NextStep { get; set; }
+
+    [Parameter]
+    public Models StateModels { get; set; }
+
+    private void SelectPlan(string name)
+    {
+        StateModels.Plan.Name = name;
+    }
+
+    private void OnValidSubmit()
+    {
+        NextStep();
+    }
+
+    private string GetClassName(int perks, int position)
+    {
+        return ((perks & position) > 0) ? "checked" : "";
+    }
+}

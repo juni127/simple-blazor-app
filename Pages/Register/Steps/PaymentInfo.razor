@@ -1,0 +1,72 @@
+@namespace RegisterSteps
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Forms
+
+<EditForm id="ActualForm" Model="@StateModels.PaymentInfo" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <h4>Card details:</h4>
+    <div style="display: flex;">
+        <div>
+            <MatTextField Label="Name on card *" Outlined="true" @bind-Value="StateModels.PaymentInfo.NameOnCard" />
+            <ValidationMessage For="@(() => StateModels.PaymentInfo.NameOnCard)" />
+        </div>
+        <div>
+            <MatTextField Label="Card number *" Outlined="true" @bind-Value="StateModels.PaymentInfo.CardNumber" />
+            <ValidationMessage For="@(() => StateModels.PaymentInfo.CardNumber)" />
+        </div>
+    </div>
+    <div style="display: flex;">
+        <div>
+            <MatTextField Label="Expiry date *" Outlined="true" @bind-Value="StateModels.PaymentInfo.ExpiryDate" />
+            <ValidationMessage For="@(() => StateModels.PaymentInfo.ExpiryDate)" />
+        </div>
+        <div>
+            <MatTextField Label="CVV *" Outlined="true" @bind-Value="StateModels.PaymentInfo.CVV"
+                HelperText="Last three digits on signature strip" HelperTextPersistent="true" />
+            <ValidationMessage For="@(() => StateModels.PaymentInfo.CVV)" />
+        </div>
+    </div>
+    <h4>Billing address:</h4>
+    <div style="display: flex; flex-direction: column;">
+        <MatTextField Label="Address line 1 *" Outlined="true" @bind-Value="StateModels.PaymentInfo.AddressLine1" />
+        <ValidationMessage For="@(() => StateModels.PaymentInfo.AddressLine1)" />
+    </div>
+    <div style="display: flex; flex-direction: column;">
+        <MatTextField Label="Address line 2" Outlined="true" @bind-Value="StateModels.PaymentInfo.AddressLine2" />
+        <ValidationMessage For="@(() => StateModels.PaymentInfo.AddressLine2)" />
+    </div>
+    <div style="display: flex;">
+        <div>
+            <MatTextField Label="City *" Outlined="true" @bind-Value="StateModels.PaymentInfo.City" />
+            <ValidationMessage For="@(() => StateModels.PaymentInfo.City)" />
+        </div>
+        <div>
+            <MatTextField Label="State/Province/Region" Outlined="true" @bind-Value="StateModels.PaymentInfo.State" />
+            <ValidationMessage For="@(() => StateModels.PaymentInfo.State)" />
+        </div>
+    </div>
+    <div style="display: flex;">
+        <div>
+            <MatTextField Label="Zip / Postal code *" Outlined="true"
+                @bind-Value="StateModels.PaymentInfo.PostalCode" />
+            <ValidationMessage For="@(() => StateModels.PaymentInfo.PostalCode)" />
+        </div>
+        <div>
+            <MatTextField Label="Country *" Outlined="true" @bind-Value="StateModels.PaymentInfo.Country" />
+            <ValidationMessage For="@(() => StateModels.PaymentInfo.Country)" />
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public Action NextStep { get; set; }
+
+    [Parameter]
+    public Models StateModels { get; set; }
+
+    private void OnValidSubmit()
+    {
+        NextStep();
+    }
+}

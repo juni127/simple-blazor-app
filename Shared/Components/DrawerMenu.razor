@@ -1,0 +1,43 @@
+﻿@namespace Components
+
+<MatDrawerContainer Style="width: 100vw; height: 100vh;">
+    <MatDrawer @bind-Opened="@Opened">
+        <MatNavMenu>
+            <MatNavItem Title="Item 1">Item 1 - OnClick</MatNavItem>
+            <MatNavItem Disabled="true" Title="Item 2">Item 2</MatNavItem>
+            <MatNavItem>
+                <MatIcon Icon="grade"></MatIcon>&nbsp; Item 4
+            </MatNavItem>
+            <MatDivider></MatDivider>
+            <MatNavItem>
+                <MatIcon Icon="face"></MatIcon>&nbsp; Item 5
+            </MatNavItem>
+            <MatNavSubMenu>
+                <MatNavSubMenuHeader>
+                    <MatNavItem AllowSelection="false">
+                        <MatIcon Icon="explore"></MatIcon>&nbsp; Item 6
+                    </MatNavItem>
+                </MatNavSubMenuHeader>
+                <MatNavSubMenuList>
+                    <MatNavItem Disabled="true" Href="#">Item 6.A</MatNavItem>
+                    <MatNavItem>Item 6.B</MatNavItem>
+                    <MatNavItem>Item 6.C</MatNavItem>
+
+                </MatNavSubMenuList>
+            </MatNavSubMenu>
+        </MatNavMenu>
+    </MatDrawer>
+    <MatDrawerContent>
+        @ChildContent
+    </MatDrawerContent>
+</MatDrawerContainer>
+
+
+@code
+{
+    [Parameter]
+    public bool Opened { get; set; } = true;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = null;
+}

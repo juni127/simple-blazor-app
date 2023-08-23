@@ -1,0 +1,17 @@
+@namespace Components
+
+<section id="@Id" style="background: @BackgroundColor;">
+    @ChildContent
+</section>
+
+@code
+{
+    [Parameter]
+    public string Id { get; set; } = "";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string BackgroundColor { get; set; } = "#FFF0";
+}

@@ -1,0 +1,21 @@
+@namespace LPSections
+@inject NavigationManager NavManager
+@using Components
+
+<Section Id="getstarted" BackgroundColor="var(--mdc-theme-primary)">
+    <div class="section-container">
+        <h2>We love to make perfect solutions for your business</h2>
+        <p>Why I say old chap that is, spiffing off his nut cor blimey guvnords geeza
+            bloke knees up bobby, sloshed arse William cack Richard. Bloke fanny around chesed of bum bag old lost the
+            pilot say there spiffing off his nut.</p>
+        <MatButton Raised="true" class="call-to-action" OnClick="GetStarted">GET STARTED</MatButton>
+    </div>
+</Section>
+
+@code
+{
+    void GetStarted()
+    {
+        NavManager.NavigateTo("/getstarted");
+    }
+}

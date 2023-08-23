@@ -1,0 +1,82 @@
+@namespace LPSections
+@inject NavigationManager NavManager
+@using Components
+
+<Section Id="pricing" BackgroundColor="#fafafa">
+    <div class="pricing-container">
+        <div class="pricing-header">
+            <h3>Pricing & Plans</h3>
+            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+                in
+                some form. </p>
+        </div>
+        <div class="pricing-content">
+            @foreach (var plan in Plans)
+            {
+                <MatCard class="col-11 col-xs-8 col-sm-5 col-md-4 pricing-card">
+                    <MatCardContent class="pricing-card-content">
+                        <h4>@plan.Name</h4>
+                        <p>@plan.Description</p>
+                        <div>
+                            $
+                            <h2>@plan.Value</h2>
+                            <p>/mo</p>
+                        </div>
+                        <MatButton Outlined="true" OnClick="GetStarted">START FREE TRIAL</MatButton>
+                        <ul>
+                            <li class="@GetClassName(plan.Perks, 1)">
+                                <MatIcon Icon="check_circle_outline" />
+                                Cras justo odio.
+                            </li>
+                            <li class="@GetClassName(plan.Perks, 2)">
+                                <MatIcon Icon="check_circle_outline" />
+                                Dapibus ac facilisis in.
+                            </li>
+                            <li class="@GetClassName(plan.Perks, 4)">
+                                <MatIcon Icon="check_circle_outline" />
+                                Morbi leo risus.
+                            </li>
+                            <li class="@GetClassName(plan.Perks, 8)">
+                                <MatIcon Icon="check_circle_outline" />
+                                Excepteur sint occaecat velit.
+                            </li>
+                        </ul>
+                    </MatCardContent>
+                </MatCard>
+            }
+        </div>
+    </div>
+</Section>
+
+@code
+{
+    private struct Plan
+    {
+        public string Name, Description, Value;
+        public int Perks;
+
+        public Plan(string name, string description, string value, int perks)
+        {
+            Name = name;
+            Description = description;
+            Value = value;
+            Perks = perks;
+        }
+    }
+
+    private Plan[] Plans = {
+new Plan("Starter", "Lorem Ipsum is simply dummy text of the printing and industry.", "0", 3),
+new Plan("Exclusive", "Lorem Ipsum is simply dummy text of the printing and industry.", "99", 7),
+new Plan("Premium", "Lorem Ipsum is simply dummy text of the printing and industry.", "150", 15)
+};
+
+    private string GetClassName(int perks, int position)
+    {
+        return ((perks & position) > 0) ? "checked" : "";
+    }
+
+    private void GetStarted()
+    {
+        NavManager.NavigateTo("/getstarted");
+    }
+}

@@ -1,0 +1,31 @@
+.section-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 96%;
+    max-width: 1000px;
+    min-height: 600px;
+    padding: 32px;
+    color: #fff;
+    text-align: center;
+}
+
+::deep .call-to-action {
+    background-clip: text;
+    border: 1px solid white;
+    font-weight: 600;
+    box-shadow: none;
+    transition: all .5s;
+    font-size: 32px;
+    height: fit-content;
+    margin-top: 36px;
+}
+
+::deep .call-to-action:hover {
+    background: white;
+    background-clip: none;
+    color: var(--mdc-theme-secondary);
+    font-weight: 600;
+    box-shadow: none;
+}

@@ -1,0 +1,70 @@
+@namespace LPSections
+@using Components
+
+<Section Id="team">
+    <div class="team-content">
+        <div class="team-header">
+            <h3>Our Creative Team</h3>
+            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+                in
+                some form. </p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; background: none;">
+            @foreach (var colaborator in TeamList)
+            {
+                <MatCard class="col-11 col-xs-9 col-sm-6 col-md-4 team-card">
+                    <img src="@colaborator.Avatar" />
+                    <MatCardContent class="team-card-content">
+                        <div class="team-card-content-social">
+                            <MatIconButton>
+                                <i class="fa-brands fa-github"></i>
+                            </MatIconButton>
+                            <MatIconButton>
+                                <i class="fa-brands fa-linkedin"></i>
+                            </MatIconButton>
+                            <MatIconButton>
+                                <i class="fa-brands fa-instagram"></i>
+                            </MatIconButton>
+                            <MatIconButton>
+                                <i class="fa-brands fa-twitter"></i>
+                            </MatIconButton>
+                        </div>
+                        <h4>@colaborator.Name</h4>
+                        <h6>@colaborator.Position</h6>
+                    </MatCardContent>
+                </MatCard>
+            }
+        </div>
+    </div>
+</Section>
+
+@code
+{
+    private struct Colaborator
+    {
+        public string Name, Position, Avatar, GitHub, LinkedIn, Instagram, Twitter;
+        public Colaborator(string name, string position, string avatar, string github, string linkedin, string instagram, string
+        twitter)
+        {
+            Name = name;
+            Position = position;
+            Avatar = avatar;
+            GitHub = github;
+            LinkedIn = linkedin;
+            Instagram = instagram;
+            Twitter = twitter;
+        }
+    }
+
+    private Colaborator[] TeamList = {
+new Colaborator("George Harrison", "Guitarrista",
+"https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/George_Harrison_1974_%28cropped%29.jpg/800px-George_Harrison_1974_%28cropped%29.jpg",
+"", "", "", ""),
+new Colaborator("John Lennon", "Vocalista",
+"https://s2.glbimg.com/RlJqAdUGEo6k57hRpB_eTIBtq4w=/smart/e.glbimg.com/og/ed/f/original/2020/03/12/john-lennon-em-nova-york-por-bob-gruen_foto-55_credito-bob-gruen-1024x1024.jpg",
+"", "", "", ""),
+new Colaborator("Ringo Starr", "Baterista",
+"https://upload.wikimedia.org/wikipedia/commons/4/4e/Ringo_Starr.png",
+"", "", "", "") };
+
+}

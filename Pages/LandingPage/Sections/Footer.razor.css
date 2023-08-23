@@ -1,0 +1,50 @@
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 64px;
+}
+
+.footer-container .solutions-section h4,
+.footer-container .support-section h4 {
+    margin-bottom: 24px;
+}
+
+.footer-container .solutions-section p,
+.footer-container .support-section p {
+    color: #0008;
+    cursor: pointer;
+    margin-bottom: 4px;
+    transition: all .25s;
+}
+
+.footer-container .solutions-section p:hover,
+.footer-container .support-section p:hover {
+    color: var(--mdc-theme-secondary);
+}
+
+.footer-container .info-section h2,
+.footer-container .newsletter-section h4 {
+    margin-bottom: 24px;
+}
+
+.footer-container .info-section p {
+    color: #0008;
+    margin-bottom: 0px;
+}
+
+.footer-container .newsletter-section p {
+    color: #0008;
+    margin-bottom: 24px;
+}
+
+.footer-container .info-section span,
+.footer-container .newsletter-section span {
+    color: var(--mdc-theme-primary);
+    cursor: pointer;
+    transition: all .25s;
+}
+
+.footer-container .info-section span:hover,
+.footer-container .newsletter-section span:hover {
+    color: var(--mdc-theme-secondary);
+}

@@ -1,0 +1,101 @@
+@using RegisterSteps
+
+<div class="steps-container"
+    style="display: flex; flex-direction: column; justify-content: center; align-items: center; flex: 1;">
+    <div class="steps-content"
+        style="display: flex;flex-direction: column; align-items: center; padding: 32px;border: 1px solid #0002;border-radius: 16px; max-width: 1000px; margin-top: 64px;">
+        <div class="steps-header" style="display: flex;flex-direction: column;align-items: center;">
+            <h2 style="font-weight: 300;color: #0009;">Getting Started</h2>
+            <div class="steps-breadcrumb">
+                @for (int index = 0; index < Steps.Count; index++)
+                {
+                    <div class="step-item @(index == StepIndex ? "active" : "") @(StepIndex > index ? "complete" : "")">
+                        @Steps[index].DisplayName
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="step-container">
+            @if (StepIndex < Steps.Count)
+            {
+                @Steps[StepIndex].Component
+            }
+            else
+            {
+                <Finished />
+            }
+        </div>
+        <div class="steps-controler" style="display: flex;justify-content: end;width: 100%;">
+            @if (StepIndex > 0 && StepIndex < Steps.Count)
+            {
+                <MatButton Outlined="true" style="margin-inline: 8px;" OnClick="BackStep">
+                    Back
+                </MatButton>
+            }
+            @if (StepIndex < Steps.Count)
+            {
+                <MatButton type="submit" form="ActualForm" Unelevated="true" style="margin-inline: 8px;">
+                    @(StepIndex >= Steps.Count - 1 ? "Finish" : "Next")
+                </MatButton>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private int StepIndex { get; set; } = 0;
+    private List<Step> Steps = new List<Step>();
+    private Models StateModels = new Models();
+
+
+    protected override void OnInitialized()
+    {
+        Steps.Add(new Step("User Details", makeFragment(typeof(UserInfo))));
+        Steps.Add(new Step("Plan Selection", makeFragment(typeof(PlanSelection))));
+        Steps.Add(new Step("Payment Details", makeFragment(typeof(PaymentInfo))));
+        Steps.Add(new Step("Review", makeFragment(typeof(ReviewOrder))));
+    }
+
+    private async void FinishRegister()
+    {
+        StepIndex++;
+    }
+
+    private void NextStep()
+    {
+        if (StepIndex >= Steps.Count - 1)
+            FinishRegister();
+        else
+            StepIndex++;
+        StateHasChanged();
+    }
+
+    private void BackStep()
+    {
+        if (StepIndex > 0)
+            StepIndex--;
+    }
+
+    private RenderFragment makeFragment(Type step)
+    {
+        return ((builder) =>
+        {
+            builder.OpenComponent(0, step);
+            builder.AddAttribute(1, "NextStep", NextStep);
+            builder.AddAttribute(2, "StateModels", StateModels);
+            builder.CloseComponent();
+        });
+    }
+
+    private struct Step
+    {
+        public string DisplayName;
+        public RenderFragment Component;
+
+        public Step(string displayName, RenderFragment component)
+        {
+            DisplayName = displayName;
+            Component = component;
+        }
+    }
+}

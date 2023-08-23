@@ -1,0 +1,39 @@
+@namespace RegisterSteps
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Components.Forms
+
+<EditForm id="ActualForm" Model="@StateModels.UserInfo" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <h4>User details:</h4>
+    <div style="display: flex;">
+        <div>
+            <MatTextField Label="Name *" Outlined="true" @bind-Value="StateModels.UserInfo.Name" />
+            <ValidationMessage For="@(() => StateModels.UserInfo.Name)" />
+        </div>
+        <div>
+            <MatTextField Label="Last Name *" Outlined="true" @bind-Value="StateModels.UserInfo.LastName" />
+            <ValidationMessage For="@(() => StateModels.UserInfo.LastName)" />
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+        <MatTextField Type="email" Label="Email *" Outlined="true" @bind-Value="StateModels.UserInfo.Email" />
+        <ValidationMessage For="@(() => StateModels.UserInfo.Email)" />
+    </div>
+    <div style="display: flex; flex-direction: column;">
+        <MatTextField Type="password" Label="Password *" Outlined="true" @bind-Value="StateModels.UserInfo.Password" />
+        <ValidationMessage For="@(() => StateModels.UserInfo.Password)" />
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public Action NextStep { get; set; }
+
+    [Parameter]
+    public Models StateModels { get; set; }
+
+    private void OnValidSubmit()
+    {
+        NextStep();
+    }
+}

@@ -1,0 +1,49 @@
+@namespace LPSections
+@using Components
+
+<Section Id="services">
+    <div class="services-container">
+        <h1>Our Best Services</h1>
+        <p>
+            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in
+            some form.
+        </p>
+        <div class="services-card-container">
+            @foreach (var service in Services)
+            {
+                <MatCard class="col-12 col-xs-6 col-sm-4 services-card">
+                    <MatCardContent class="services-card-content">
+                        <div class="services-icon-container">
+                            <MatIcon class="services-icon" Icon="@service.Icon" />
+                        </div>
+                        <h4>@service.Title</h4>
+                        <p>@service.Description</p>
+                    </MatCardContent>
+                </MatCard>
+            }
+        </div>
+    </div>
+</Section>
+
+@code
+{
+    private struct Service
+    {
+        public string Title, Description, Icon;
+        public Service(string title, string description, string icon)
+        {
+            Title = title;
+            Description = description;
+            Icon = icon;
+        }
+    }
+
+    private Service[] Services = {
+        new Service("Refreshing Design", "Lorem ipsum dolor sit amet, adipscing elitr, sed diam nonumy eirmod tempor ividunt labor dolore magna.", "cloud_done"),
+        new Service("Refreshing Design", "Lorem ipsum dolor sit amet, adipscing elitr, sed diam nonumy eirmod tempor ividunt labor dolore magna.", "hd"),
+        new Service("Refreshing Design", "Lorem ipsum dolor sit amet, adipscing elitr, sed diam nonumy eirmod tempor ividunt labor dolore magna.", "queue"),
+        new Service("Refreshing Design", "Lorem ipsum dolor sit amet, adipscing elitr, sed diam nonumy eirmod tempor ividunt labor dolore magna.", "access_time"),
+        new Service("Refreshing Design", "Lorem ipsum dolor sit amet, adipscing elitr, sed diam nonumy eirmod tempor ividunt labor dolore magna.", "color_lens"),
+        new Service("Refreshing Design", "Lorem ipsum dolor sit amet, adipscing elitr, sed diam nonumy eirmod tempor ividunt labor dolore magna.", "nature_people")
+    };
+}

@@ -1,0 +1,15 @@
+::deep .call-to-action {
+    background-clip: text;
+    border: 1px solid white;
+    font-weight: 600;
+    box-shadow: none;
+    transition: all .5s;
+}
+
+::deep .call-to-action:hover {
+    background: white;
+    background-clip: none;
+    color: var(--mdc-theme-secondary);
+    font-weight: 600;
+    box-shadow: none;
+}

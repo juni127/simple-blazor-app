@@ -1,0 +1,9 @@
+section {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 100dvw;
+    overflow-x: hidden;
+    padding-top: 64px;
+    padding-bottom: 64px;
+}

@@ -1,0 +1,32 @@
+@namespace LPSections
+@inject NavigationManager NavManager
+@using Components
+
+<Section Id="home"
+    BackgroundColor="linear-gradient(180deg, var(--mdc-theme-primary) 0% 20%, var(--mdc-theme-secondary))">
+    <div class="col-12 col-sm-6"
+        style="display: flex; flex-direction: column; justify-content: center; max-width: 500px; color: #FFF;">
+        <h1>Corporate & Business Site Template by Ayro UI.</h1>
+        <p>
+            We are a digital agency that helps brands to achieve their business outcomes. We see technology as a tool to
+            create amazing things.
+        </p>
+        <div>
+            <MatButton Raised="true" class="call-to-action" OnClick="GetStarted">
+                GET STARTED
+            </MatButton>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6" style="display: flex; flex-direction: column; max-width: 500px;">
+        <img style="width: 100%; max-width: 100%; border-radius: 8px;"
+            src="https://demo.ayroui.com/templates/business-template/assets/images/header/hero-image.jpg" />
+    </div>
+</Section>
+
+@code
+{
+    void GetStarted()
+    {
+        NavManager.NavigateTo("/getstarted");
+    }
+}

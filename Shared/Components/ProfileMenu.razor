@@ -1,0 +1,22 @@
+@namespace Components
+
+<Avatar @ref="avatar" OnClick="OnAvatarClick" />
+<MatMenu @ref="Menu">
+    <MatList>
+        <MatListItem>Item 1</MatListItem>
+        <MatListItem>Item 2</MatListItem>
+        <MatListItem>Item 3</MatListItem>
+        <MatListItem>Item 4</MatListItem>
+        <MatListItem>Item 5</MatListItem>
+    </MatList>
+</MatMenu>
+
+@code {
+    Avatar avatar = default!;
+    MatMenu Menu;
+
+    void OnAvatarClick()
+    {
+        Menu.OpenAsync(avatar.Ref);
+    }
+}

@@ -1,0 +1,48 @@
+﻿@namespace Components
+
+<MatAppBar Fixed="true" style="top: 0; height: 64px; box-shadow: none;">
+    <MatAppBarRow>
+        <MatAppBarSection>
+            @if (ShowMenuIcon)
+            {
+                @if (DrawerOpened == false)
+                {
+                    <MatIconButton Icon="menu" @onclick="SwitchDrawerState" />
+                }
+                else
+                {
+                    <MatIconButton Icon="close" @onclick="SwitchDrawerState" />
+                }
+            }
+            <div @onclick="LogoAction" style="cursor: pointer; user-select: none;">
+                <MatAppBarTitle>SimpleBlazorApp</MatAppBarTitle>
+            </div>
+        </MatAppBarSection>
+        @ChildContent
+    </MatAppBarRow>
+</MatAppBar>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = null;
+
+    [Parameter]
+    public EventCallback SwitchDrawerState { get; set; }
+
+    [Parameter]
+    public EventCallback LogoAction { get; set; }
+
+    [Parameter]
+    public bool DrawerOpened { get; set; } = false;
+
+    [Parameter]
+    public bool ShowMenuIcon { get; set; } = true;
+
+    Avatar avatar = default!;
+    MatMenu Menu;
+
+    void OnAvatarClick()
+    {
+        Menu.OpenAsync(avatar.Ref);
+    }
+}

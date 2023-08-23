@@ -1,0 +1,80 @@
+.section-image {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+}
+
+.section-image img {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.section-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 500px;
+}
+
+.section-content h2 {
+    font-size: 18px;
+    line-height: 18px;
+    text-transform: uppercase;
+}
+
+.section-content h2::before {
+    content: '';
+    margin: 6px;
+    border: 1px solid var(--mdc-theme-primary);
+    width: 20px;
+    display: inline-block;
+}
+
+.section-content h1 {
+    margin-top: 16px;
+    margin-bottom: 32px;
+}
+
+.section-content div.section-tab-controll {
+    background-color: #dadada;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-wrap: normal;
+    overflow-x: scroll;
+}
+
+::deep div button {
+    margin: 8px;
+    min-width: fit-content;
+}
+
+.section-content p {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    opacity: .5;
+}
+
+::deep .section-container .section-item,
+.section-content .section-container {
+    background-color: #0000;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    border-radius: 0;
+}
+
+::deep .section-container .section-item {
+    display: none;
+
+}
+
+::deep .section-container .section-item.active {
+    display: block;
+}

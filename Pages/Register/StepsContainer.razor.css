@@ -1,0 +1,76 @@
+.steps-breadcrumb {
+    counter-reset: child-index;
+    display: flex;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #0008;
+    user-select: none;
+}
+
+::deep .step-item {
+    counter-increment: child-index;
+}
+
+::deep .step-item.active,
+::deep .step-item.complete {
+    color: var(--mdc-theme-secondary);
+}
+
+::deep .step-item::before {
+    content: counter(child-index);
+    margin: 4px;
+    background: #0008;
+    height: 24px;
+    display: inline-block;
+    width: 24px;
+    border-radius: 12px;
+    text-align: center;
+    line-height: 24px;
+    color: white;
+}
+
+::deep .step-item.active::before {
+    background: var(--mdc-theme-secondary);
+}
+
+::deep .step-item.complete::before {
+    content: '\2713';
+    background: var(--mdc-theme-secondary);
+}
+
+::deep .step-item:not(:last-child)::after {
+    content: '';
+    margin: 4px;
+    border-bottom: 2px solid #0008;
+    width: 24px;
+    display: inline-block;
+}
+
+::deep .step-item.complete:not(:last-child)::after {
+    border-bottom: 2px solid var(--mdc-theme-secondary);
+}
+
+.step-container {
+    display: flex;
+    flex-direction: column;
+    margin: 32px;
+    width: 100%;
+}
+
+::deep .step-container>form>div {
+    margin-top: 16px;
+    gap: 16px;
+}
+
+::deep .step-container>form>div>label {
+    flex: auto;
+}
+
+::deep .step-container>form>div>div:not(.validation-message) {
+    flex: 1;
+}
+
+::deep .step-container>form>div>div>label {
+    width: 100%;
+}

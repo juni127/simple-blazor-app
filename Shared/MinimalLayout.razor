@@ -1,0 +1,95 @@
+@inherits LayoutComponentBase
+@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime
+@using Components
+
+<PageTitle>SimpleBlazorApp</PageTitle>
+
+<div class="app-bar-container">
+    <MatAppBarContainer>
+        <AppBar ShowMenuIcon="false" LogoAction="Home">
+            @if(!isRegisterPage)
+            {
+            <MatAppBarSection class="hidden flex-sm" style="justify-content: center;">
+                <MatButton Unelevated="true" style="color: white;" OnClick="@(() => ScrollToId("story"))">Story</MatButton>
+                <MatButton Unelevated="true" style="color: white;" OnClick="@(() => ScrollToId("services"))">Services</MatButton>
+                <MatButton Unelevated="true" style="color: white;" OnClick="@(() => ScrollToId("pricing"))">Pricing</MatButton>
+                <MatButton Unelevated="true" style="color: white;" OnClick="@(() => ScrollToId("team"))">Team</MatButton>
+                <MatButton Unelevated="true" style="color: white;" OnClick="GetStarted">Get Started</MatButton>
+            </MatAppBarSection>
+            <MatAppBarSection Align="@MatAppBarSectionAlign.End">
+                <MatButton Unelevated="true" OnClick="LogIn" class="hidden flex-sm">Login</MatButton>
+                <MatIconButton Icon="@(isMobileMenuOpen ? "close" : "menu")" class="flex hidden-sm" OnClick="@(() => isMobileMenuOpen = !isMobileMenuOpen)"/>
+            </MatAppBarSection>
+            <div class="flex hidden-sm mobile-menu-container @(isMobileMenuOpen ? "open" : "")">
+                <MatButton Unelevated="true" style="color: white;" OnClick="@(() => ScrollToId("story"))">Story</MatButton>
+                <MatButton Unelevated="true" style="color: white;" OnClick="@(() => ScrollToId("services"))">Services</MatButton>
+                <MatButton Unelevated="true" style="color: white;" OnClick="@(() => ScrollToId("pricing"))">Pricing</MatButton>
+                <MatButton Unelevated="true" style="color: white;" OnClick="@(() => ScrollToId("team"))">Team</MatButton>
+                <MatButton Unelevated="true" style="color: white;" OnClick="GetStarted">Get Started</MatButton>
+                <MatButton Unelevated="true" style="color: white;" OnClick="LogIn">Login</MatButton>
+            </div>
+            }
+        </AppBar>
+        <div id="content" @onscroll="OnScroll">
+            <MatAppBarContent style="padding: 0;">
+                @Body
+            </MatAppBarContent>
+        </div>
+
+        <MatFAB Class="@(!isOnPageTop && !isRegisterPage ? "back-to-top-fab visible" : "back-to-top-fab hidden")" OnClick="ScrollToTop">
+            <MatIcon>keyboard_arrow_up</MatIcon>
+        </MatFAB>
+    </MatAppBarContainer>
+</div>
+
+@code
+{
+    private bool isMobileMenuOpen = false;
+    private bool isOnPageTop = true;
+    private bool isRegisterPage = false;
+    private bool isFABVisible = false;
+    // !isOnPageTop && !isRegisterPage
+
+    protected override async void OnParametersSet()
+    {
+        var uri = NavManager.ToBaseRelativePath(NavManager.Uri);
+        isRegisterPage = uri == "getstarted" ? true : false;
+    }
+
+    private async Task OnScroll(EventArgs e)
+    {
+        int ScrollTop = await JSRuntime.InvokeAsync<int>("eval", "document.getElementById('content').scrollTop");
+        isOnPageTop = ScrollTop < 64 ? true : false;
+    }
+
+    private async Task ScrollToTop()
+    {
+        await JSRuntime.InvokeAsync<string>("eval", "document.getElementById('content').scrollTo({ top: 0, left: 0, behavior: 'smooth' })");
+    }
+
+    private async Task ScrollToId(string id)
+    {
+        await JSRuntime.InvokeAsync<string>("eval", $"document.getElementById('{id}').scrollIntoView({{ block: 'nearest', behavior: 'smooth' }})");
+        isMobileMenuOpen = false;
+    }
+
+    private void Home()
+    {
+        if(isRegisterPage)
+            NavManager.NavigateTo("/");
+        else
+            ScrollToId("home");
+    }
+
+    private async void LogIn()
+    {
+        await JSRuntime.InvokeAsync<string>("eval", "window.location.assign('http://localhost/user/oauth2/aHR0cDovL2xvY2FsaG9zdDo1MTIzL2dyYW50ZWQ/NTkxOTg0MTQtZmZkMC00NzIxLTlhM2ItNmMwOTgwZTY1ZTkz')");
+        // window.open('print.html', 'newwindow', 'width=300,height=250');
+    }
+
+    private void GetStarted()
+    {
+        NavManager.NavigateTo("/getstarted");
+    }
+}

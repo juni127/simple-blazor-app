@@ -1,10 +1,19 @@
 ﻿@inherits LayoutComponentBase
+@inject IAuthorizationService AuthorizationService
+@inject NavigationManager NavManager
+
+@using Components
 
 <PageTitle>SimpleBlazorApp</PageTitle>
 
 <DrawerMenu Opened="@DrawerOpened">
     <MatAppBarContainer>
-        <AppBar SwitchDrawerState="@SwitchDrawerState" />
+        <AppBar SwitchDrawerState="@SwitchDrawerState" DrawerOpened="@DrawerOpened">
+
+            <MatAppBarSection Align="@MatAppBarSectionAlign.End">
+                <ProfileMenu />
+            </MatAppBarSection>
+        </AppBar>
         <MatAppBarContent>
             @Body
         </MatAppBarContent>
@@ -13,10 +22,29 @@
 
 @code
 {
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
     private bool DrawerOpened = false;
 
     void SwitchDrawerState()
     {
         DrawerOpened = !DrawerOpened;
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+
+        if (authenticationState is not null)
+        {
+            var authState = await authenticationState;
+            var user = authState?.User;
+
+            /*if (user?.Identity is null || !user.Identity.IsAuthenticated)
+            {
+            NavManager.NavigateTo("/");
+            }*/
+        }
     }
 }
