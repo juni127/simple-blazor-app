@@ -18,8 +18,8 @@ To facilitate the development, the [MatBlazor](https://www.matblazor.com) compon
 4. [Dashboard](#dashboard)
 5. [TODO](#todo)
 
-## Running & Testing
-This app was written using a Docker container environment and as such the "Running Without Docker" may not be 100% accurate.
+## Running & Testing[^1]
+In this section are listed the necessary steps to test and/or publish this app. Both testing and publishing can be achieved, or so is believed, with or without Docker and as such they are described in isolated sections.
 
 ### Testing with Docker
 Bellow is a list with the steps to run this app using Microsoft's .NET SDK Docker image from CLI, allowing live edition.
@@ -28,17 +28,30 @@ Bellow is a list with the steps to run this app using Microsoft's .NET SDK Docke
 2. On the base directory of the project run: `docker compose up test`.
 3. Open the app on [http://localhost:5123](http://localhost:5123).
 
-### Running with Docker[^1]
+### Running with Docker
 Bellow is a list with the steps to build and run this app using Microsoft's .NET Runtime Docker image from CLI.
 
 1. Follow this [tutorial](https://docs.docker.com/engine/install/ubuntu/) to install Docker (and Docker Compose) on your machine.
 2. On the base directory of the project run: `docker compose up publish`.
 3. Open the app on [http://localhost](http://localhost).
 
-[^1]: Please note that the [publishing errors](#todo) have not been fixed yet.
+### Testing without Docker
+Bellow is a list with the steps to run this app using Microsoft's .NET SDK from CLI.
 
-### Without Docker
-To be written...
+1. Download and install [.NET 7.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0).
+2. On the base directory of the project run: `dotnet watch`;
+3. If the app does not automatically open on the defaul browser, navigate to [http://localhost:5123](http://localhost:5123).
+
+### Running without Docker
+Bellow is a list with the steps to run this app using Microsoft's .NET SDK from CLI.
+
+1. Download and install [.NET 7.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/7.0).
+2. On the base directory of the project run: `dotnet publish -c Release`;
+3. Navigate to `~/bin/Release/net7.0/publish`.
+4. Execute the `SimpleBlazorApp` (Unix like OS) or `SimpleBlazorApp.exe` (Windows) file in this directory.
+5. If the app does not automatically open on the defaul browser, navigate to [http://localhost:5000](http://localhost:5000).
+
+[^1]: This app was written using a Docker container environment and as such the "Running Without Docker" may not be 100% accurate.
 
 ## Images
 In case you're in a hurry or just want to see what the app looks like before running it, there are some screenshots in this section. These prints were taken using *Firefox Developer Edition 117.0b9 (64-bits)* under *macOS Monterey 12.6.2*.
@@ -126,9 +139,9 @@ The Dashboard section is currently under development.
     - [x] Create a Dockerfile for publishing the app.
     - [x] Implement publishing service in docker-compose.yml.
 - [ ] README.md
-    - [ ] Write Running & Testing section
+    - [x] Write Running & Testing section
         - [x] Write With Docker subsection
-        - [ ] Write Without Docker subsection
+        - [x] Write Without Docker subsection
     - [ ] Print and incorporate the Register Mobile subsection
 - [x] Landing page
     - [x] Minimal layout
