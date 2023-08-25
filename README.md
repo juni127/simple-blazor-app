@@ -21,8 +21,21 @@ To facilitate the development, the [MatBlazor](https://www.matblazor.com) compon
 ## Running & Testing
 This app was written using a Docker container environment and as such the "Running Without Docker" may not be 100% accurate.
 
-### With Docker
-To be written...
+### Testing with Docker
+Bellow is a list with the steps to run this app using Microsoft's .NET SDK Docker image from CLI, allowing live edition.
+
+1. Follow this [tutorial](https://docs.docker.com/engine/install/ubuntu/) to install Docker (and Docker Compose) on your machine.
+2. On the base directory of the project run: `docker compose up test`.
+3. Open the app on [http://localhost:5123](http://localhost:5123).
+
+### Running with Docker[^1]
+Bellow is a list with the steps to build and run this app using Microsoft's .NET Runtime Docker image from CLI.
+
+1. Follow this [tutorial](https://docs.docker.com/engine/install/ubuntu/) to install Docker (and Docker Compose) on your machine.
+2. On the base directory of the project run: `docker compose up publish`.
+3. Open the app on [http://localhost](http://localhost).
+
+[^1]: Please note that the [publishing errors](#todo) have not been fixed yet.
 
 ### Without Docker
 To be written...
@@ -66,8 +79,7 @@ In case you're in a hurry or just want to see what the app looks like before run
     src="./Images/RegisterReviewDesktop.png"
 />
 
-### Register mobile
-This section is a placeholder for the screenshots of the Register page on mobile since there is a need to fix the former's responsiveness.
+### Register mobile[^2]
 
 <img 
     title="Landing page desktop" 
@@ -90,6 +102,8 @@ This section is a placeholder for the screenshots of the Register page on mobile
     src="./Images/RegisterReviewMobile.png"
 />
 
+[^2]: This section is a placeholder for the screenshots of the Register page on mobile since there is a need to fix the former's responsiveness.
+
 ## Landing page
 This part of the app was created to serve as a starting point for user interaction and the marketing, registration, and selling interfaces. 
 
@@ -107,12 +121,15 @@ As the contraction part of this page depends on the completion of certain [Simpl
 The Dashboard section is currently under development.
 
 ## TODO
-- [ ] Docker configuration
+- [x] Docker configuration
+    - [x] Implement testing service in docker-compose.yml.
+    - [x] Create a Dockerfile for publishing the app.
+    - [x] Implement publishing service in docker-compose.yml.
 - [ ] README.md
     - [ ] Write Running & Testing section
-        - [ ] Write With Docker subsection
+        - [x] Write With Docker subsection
         - [ ] Write Without Docker subsection
-        - [ ] Print and incorporate the Register Mobile subsection
+    - [ ] Print and incorporate the Register Mobile subsection
 - [x] Landing page
     - [x] Minimal layout
     - [x] Sections
@@ -130,7 +147,14 @@ The Dashboard section is currently under development.
         - [x] Payment details
         - [x] Review
         - [ ] Fix mobile
+    - [ ] Remove all inline CSS
 - [ ] Dashboard
     - [x] Main layout
     - [ ] Drawer menu
     - [ ] Modules
+- [ ] [Simple Dot Net API](https://github.com/juni127/simple-dot-net-api) integration
+    - [ ] Create .env file to hold API information
+    - [ ] Create a service to handle calls to the API
+    - [ ] Implement a custom IdentityManager
+- [ ] Fix warnings
+- [x] Fix static file errors when publishing
