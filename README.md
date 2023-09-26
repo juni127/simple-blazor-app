@@ -122,13 +122,13 @@ This part of the app was created to serve as a starting point for user interacti
 
 ### Sections
 The Sections page was implemented as an example, inspired by AyroUI's [Business Template](https://demo.ayroui.com/templates/business-template). The aim was to showcase the developer's ability to deliver a functioning UI based on a predefined design.  
-To recreate this interface using Blazor this page was divided into sections, and a Section component was developed to encapsulate each bit. Then each of these pieces was implemented using Blazor's Scoped CSS to style each Section and the logic was implemented in their correspondent component classes, using JS when necessary.
+To recreate this interface using Blazor this page was divided into sections, and a Section component was developed to encapsulate each bit. Then each of these pieces were implemented using Blazor's Scoped CSS to style individual Sections and the logic implemented in their correspondent component classes, using JS when necessary.
 
 ### Register
 The Register page was implemented to allow the simulation of new users' registration by contracting the application services.  
 The process was divided into four sections: User details, Plan selection, Payment details and Review. This choice was made to add a degree of fidelity to the user experience as it corresponds to what would be commonly seen in the market.
 
-As the contraction part of this page depends on the completion of certain [Simple Dot Net API](https://github.com/juni127/simple-dot-net-api) features that are not yet complete, there is only an interface with no functionality attached beyond some frontend field validation.
+As the contraction part of this page depends on certain [Simple Dot Net API](https://github.com/juni127/simple-dot-net-api) features that are not yet complete, there is only an interface with no functionality, beyond some frontend field validation, attached .
 
 ## Dashboard
 The Dashboard section is currently under development.
